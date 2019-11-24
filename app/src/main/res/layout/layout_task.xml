@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/taskinfo"
+    android:layout_width="match_parent"
+    android:layout_height="95dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/taskname_layout"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            tools:text="TaskName" />
+
+        <Button
+            android:id="@+id/butondel_layout"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="105dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="7dp"
+            android:text="DEL"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/taskInfoRow"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/priority_layout"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            tools:text="Priority" />
+
+        <TextView
+            android:id="@+id/status_layout"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            tools:text="Status" />
+
+        <TextView
+            android:id="@+id/date_layout"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            tools:text="Date" />
+    </LinearLayout>
+
+</LinearLayout>
