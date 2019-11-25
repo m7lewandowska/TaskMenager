@@ -18,14 +18,15 @@ class EditTaskFragment : Fragment() {
 
     private lateinit var viewModel: EditTaskViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.edit_task_fragment, container, false)
+        Toast.makeText(context, "test1 - edycja", Toast.LENGTH_LONG).show()
+
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
+
+
+   /* override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(EditTaskViewModel::class.java)
         // TODO: Use the ViewModel
@@ -35,10 +36,9 @@ class EditTaskFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        Toast.makeText(context, "test1 - edycja", Toast.LENGTH_LONG).show()
 
         //taskname_edit.text = "22"
 
-    }
+    }*/
 
 }

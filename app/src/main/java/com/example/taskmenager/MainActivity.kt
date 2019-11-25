@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.core.content.ContextCompat.startActivity
+import androidx.fragment.app.Fragment
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -19,13 +20,18 @@ class MainActivity : AppCompatActivity() {
     private var dtbConnect: DTBConnect = DTBConnect(this)
     private lateinit var listView: ListView
 
-    private val fragmentManager = supportFragmentManager
-    private val editFragment = EditTaskFragment()
+   // private val fragmentManager = supportFragmentManager
+    //private val editFragment = EditTaskFragment()
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+       // val fragment = EditTaskFragment.newInstance()
+       // ShowFragment(fragment)
 
        /*fab.setOnClickListener { view ->
             Snackbar.make(view, "Hello my friend", Snackbar.LENGTH_LONG)
@@ -87,9 +93,4 @@ class MainActivity : AppCompatActivity() {
         adapter.notifyDataSetChanged();
     }
 
-    fun ShowFragment(){
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.myFragment, editFragment)
-        fragmentTransaction.commit()
-    }
 }

@@ -9,12 +9,13 @@ import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 
 class TaskAdapter(private val context: Context, private val dataSource: ArrayList<Task>): BaseAdapter() {
     private val inflater: LayoutInflater =
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-    private var mainActivity: MainActivity= MainActivity()
+    private var mainActivity: MainActivity = MainActivity()
     private var taskModel: TaskModel = TaskModel()
     private var dtbConnect: DTBConnect = DTBConnect(context)
 
@@ -50,10 +51,11 @@ class TaskAdapter(private val context: Context, private val dataSource: ArrayLis
         rowView.setOnClickListener{
 
             Toast.makeText(context, "test1 - edycja", Toast.LENGTH_LONG).show()
-           // mainActivity.ShowFragment()
+            val fragment = EditTaskFragment.newInstance()
+            ShowFragment(fragment)
+            true
 
         }
-
 
         //Button del on listView
         val delButton = rowView.findViewById<Button>(R.id.butondel_layout)
@@ -78,5 +80,12 @@ class TaskAdapter(private val context: Context, private val dataSource: ArrayLis
         return rowView
     }
 
+    fun ShowFragment(fragment: Fragment){
+        val manager = mainActivity.supportFragmentManager
+        val fragmentTransaction = manager.beginTransaction()
+        fragmentTransaction.replace(R.id.myFragment, fragment)
+        fragmentTransaction.commit()
 
+
+    }
 }
