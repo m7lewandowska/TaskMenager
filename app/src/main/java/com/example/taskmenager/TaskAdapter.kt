@@ -10,12 +10,13 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.content_main.*
 
 class TaskAdapter(private val context: Context, private val dataSource: ArrayList<Task>): BaseAdapter() {
     private val inflater: LayoutInflater =
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-    private var mainActivity: MainActivity = MainActivity()
+    private var mainActivity: MainActivity = context as MainActivity
     private var taskModel: TaskModel = TaskModel()
     private var dtbConnect: DTBConnect = DTBConnect(context)
 
@@ -53,7 +54,7 @@ class TaskAdapter(private val context: Context, private val dataSource: ArrayLis
             Toast.makeText(context, "test1 - edycja", Toast.LENGTH_LONG).show()
             val fragment = EditTaskFragment.newInstance()
             ShowFragment(fragment)
-            true
+
 
         }
 
@@ -64,12 +65,13 @@ class TaskAdapter(private val context: Context, private val dataSource: ArrayLis
             //Toast.makeText(context," ${idTSK}", Toast.LENGTH_SHORT).show()
             dtbConnect.delTaskFromDTB(idTSK)
 
-//            var tasks = dtbConnect.getTaskFromDTB()
-//            mainActivity.ClearListView(tasks as ArrayList<Task>)
+
+           /* mainActivity.ClearListView(taskModel.getTask() as ArrayList<Task>)
+            var tasks = dtbConnect.getTaskFromDTB()
 //            Toast.makeText(context,"Please fill all data ${tasks}", Toast.LENGTH_SHORT).show()
-//
-//            //Dodanie do listView_tasks wszystkich taskow
-//            mainActivity.AddToListView(tasks as ArrayList<Task>)
+
+           //Dodanie do listView_tasks wszystkich taskow
+            mainActivity.AddToListView(tasks as ArrayList<Task>)*/
         }
 
         nameTextView.text = task.taskName.toString()

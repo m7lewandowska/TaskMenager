@@ -93,4 +93,14 @@ class MainActivity : AppCompatActivity() {
         adapter.notifyDataSetChanged();
     }
 
+   /* fun refresh(idtsk: Int)
+    {
+        val listofTasks = listView_tasks
+        val adapter = TaskAdapter(this, listofTasks)
+        listView.adapter = adapter
+
+        listofTasks.remove(idtsk)
+        adapter.notifyDataSetChanged();
+    }*/
+
 }
