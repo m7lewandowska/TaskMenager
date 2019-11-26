@@ -67,6 +67,11 @@ class TaskListFragment : Fragment() {
         ClearListView()
     }
 
+    override fun onStart() {
+        super.onStart()
+        ClearListView()
+    }
+
     fun ClearListView(){
 
         listofTasks.clear()

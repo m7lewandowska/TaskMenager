@@ -44,17 +44,14 @@ class AddTaskActivity : AppCompatActivity() {
             taskdate = current.format(formatter).toString()
         }
 
-
-//        if (taskname.isNullOrEmpty() || taskdescription.isNullOrEmpty())
-//        {
-//            Toast.makeText(applicationContext,"Please fill all data ", Toast.LENGTH_SHORT).show()
-//        }
         Toast.makeText(applicationContext,"Task was added to your list", Toast.LENGTH_SHORT).show()
 
         taskModel.addTask(taskname, taskpriority, taskstatus, taskdate, taskdescription)
         var newtask =Task(taskname, taskpriority, taskstatus, taskdate, taskdescription)
         dtbConnect.addTaskToDTB(newtask)
 
+
+        tasklistfragment.ClearListView()
        // tasklistfragment.ClearListView(taskModel.getTask() as ArrayList<Task>)
 
         var tasks = dtbConnect.getTaskFromDTB()
