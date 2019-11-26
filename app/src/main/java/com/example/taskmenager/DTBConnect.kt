@@ -150,4 +150,21 @@ class DTBConnect(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nu
         return task
 
     }
+
+    fun updateTask(id: Int,task: Task)
+    {
+       val db = writableDatabase
+
+        val args = listOf<String>(id.toString()).toTypedArray()
+        val values = ContentValues().apply{
+
+            put(COL_NAME, task.taskName)
+            put(COL_DATE, task.taskDate)
+            put(COL_DESCRIPTION, task.taskDescription)
+            put(COL_PRIORITY, task.taskPriority)
+            put(COL_STATUS, task.taskStatus)
+        }
+
+        db.update(TABLE_NAME, values, "$COL_ID=?", args)
+    }
 }

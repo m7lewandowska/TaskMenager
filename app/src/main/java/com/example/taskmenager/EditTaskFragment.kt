@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_task_add.*
 import kotlinx.android.synthetic.main.edit_task_fragment.*
 
 
@@ -26,7 +28,6 @@ class EditTaskFragment : Fragment() {
         return inflater.inflate(R.layout.edit_task_fragment, container, false)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -34,7 +35,6 @@ class EditTaskFragment : Fragment() {
 
         val idTask = arguments!!.getInt("idtasku")
        // Toast.makeText(context," ${idTask}", Toast.LENGTH_SHORT).show()
-
 
         val singletask = dtbConnect.getTaskById(idTask)
 
@@ -51,18 +51,15 @@ class EditTaskFragment : Fragment() {
         if(edittask_priority == "Important")
         {
             radiogroup3.check(R.id.important_edit)
-
         }
         else if(edittask_priority == "More important")
         {
             radiogroup3.check(R.id.moreimportant_edit)
-
         }
 
         else if(edittask_priority == "The most important")
         {
             radiogroup3.check(R.id.themostimportant_edit)
-
         }
 
         if(edittask_status == "TO DO")
@@ -72,30 +69,26 @@ class EditTaskFragment : Fragment() {
         else
         {
             radioGroup2.check(R.id.done_edit)
-
         }
 
         edit_button.setOnClickListener{
 
+            val newname: String = taskname_edit.text.toString()
+
+            val radio3: RadioButton = activity!!.findViewById(radiogroup3.checkedRadioButtonId)
+            var newpriority: String = radio3.text.toString()
+
+            val radio2: RadioButton = activity!!.findViewById(radioGroup2.checkedRadioButtonId)
+            var newstatus: String = radio2.text.toString()
+
+            val newdesc: String = taskdecsription_edit.text.toString()
+
+            val newupdatedTask = Task(newname, newpriority,newstatus,edittask_date,newdesc)
+
+            dtbConnect.updateTask(idTask,newupdatedTask)
+
             val mainActivity = activity as MainActivity
             mainActivity.ShowListViewFragment()
-
         }
     }
-
-   /* override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(EditTaskViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
-
-        //taskname_edit.text = "22"
-
-    }*/
-
 }
