@@ -130,7 +130,7 @@ class DTBConnect(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nu
 
     fun getTaskById(id: Int): Task
     {
-        val query = "SELECT * FROM $TABLE_NAME WHERE $COL_ID \"$id\""
+        val query = "SELECT * FROM $TABLE_NAME WHERE $COL_ID = $id"
 
         val db = this.writableDatabase
         val cursor = db.rawQuery(query, null,null)

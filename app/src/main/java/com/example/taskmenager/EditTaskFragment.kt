@@ -38,10 +38,44 @@ class EditTaskFragment : Fragment() {
 
         val singletask = dtbConnect.getTaskById(idTask)
 
+        val edittask_name = singletask.taskName
+        val edittask_priority = singletask.taskPriority
+        val edittask_status = singletask.taskStatus
+        val edittask_date = singletask.taskDate
+        val edittaks_desc = singletask.taskDescription
+
+        dateoftask_edit.text = edittask_date
+        taskname_edit.setText(edittask_name)
+        taskdecsription_edit.setText(edittaks_desc)
+
+        if(edittask_priority == "Important")
+        {
+            radiogroup3.check(R.id.important_edit)
+
+        }
+        else if(edittask_priority == "More important")
+        {
+            radiogroup3.check(R.id.moreimportant_edit)
+
+        }
+
+        else if(edittask_priority == "The most important")
+        {
+            radiogroup3.check(R.id.themostimportant_edit)
+
+        }
+
+        if(edittask_status == "TO DO")
+        {
+            radioGroup2.check(R.id.todo_edit)
+        }
+        else
+        {
+            radioGroup2.check(R.id.done_edit)
+
+        }
+
         edit_button.setOnClickListener{
-
-            val edittask_name = singletask.taskName
-
 
             val mainActivity = activity as MainActivity
             mainActivity.ShowListViewFragment()
