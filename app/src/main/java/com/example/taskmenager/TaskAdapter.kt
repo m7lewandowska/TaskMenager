@@ -12,13 +12,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.content_main.*
 
-class TaskAdapter(private val context: Context, private val dataSource: ArrayList<Task>): BaseAdapter() {
+class TaskAdapter(private val context: Context, private var dataSource: List<Task>): BaseAdapter() {
     private val inflater: LayoutInflater =
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     private var mainActivity: MainActivity = context as MainActivity
     private var taskModel: TaskModel = TaskModel()
     private var dtbConnect: DTBConnect = DTBConnect(context)
+    private lateinit var tasklistfragment: TaskListFragment
 
     override fun getCount(): Int {
         return dataSource.size
@@ -51,7 +52,7 @@ class TaskAdapter(private val context: Context, private val dataSource: ArrayLis
         // co ma sie wywolac po wcisnieciu pojedynczego wiersza - tasku
         rowView.setOnClickListener{
 
-            Toast.makeText(context, "test1 - edycja", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Edit Task", Toast.LENGTH_LONG).show()
             val fragment = EditTaskFragment.newInstance()
             ShowFragment(fragment)
 
@@ -64,7 +65,10 @@ class TaskAdapter(private val context: Context, private val dataSource: ArrayLis
             var idTSK = dtbConnect.getIdFromDTB(task)
             //Toast.makeText(context," ${idTSK}", Toast.LENGTH_SHORT).show()
             dtbConnect.delTaskFromDTB(idTSK)
+            dataSource = dtbConnect.getTaskFromDTB().toList()
+            notifyDataSetChanged()
 
+           // tasklistfragment.ClearListView()
 
            /* mainActivity.ClearListView(taskModel.getTask() as ArrayList<Task>)
             var tasks = dtbConnect.getTaskFromDTB()
@@ -87,7 +91,6 @@ class TaskAdapter(private val context: Context, private val dataSource: ArrayLis
         val fragmentTransaction = manager.beginTransaction()
         fragmentTransaction.replace(R.id.myFragment, fragment)
         fragmentTransaction.commit()
-
 
     }
 }

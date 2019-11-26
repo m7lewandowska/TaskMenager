@@ -16,9 +16,9 @@ import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var taskModel: TaskModel = TaskModel()
-    private var dtbConnect: DTBConnect = DTBConnect(this)
-    private lateinit var listView: ListView
+   // private var taskModel: TaskModel = TaskModel()
+  //  private var dtbConnect: DTBConnect = DTBConnect(this)
+   // private lateinit var listView: ListView
 
    // private val fragmentManager = supportFragmentManager
     //private val editFragment = EditTaskFragment()
@@ -30,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        supportFragmentManager.beginTransaction().replace(R.id.myFragment, TaskListFragment()).commit()
+
        // val fragment = EditTaskFragment.newInstance()
        // ShowFragment(fragment)
 
@@ -38,7 +40,8 @@ class MainActivity : AppCompatActivity() {
                 .setAction("Action", null).show()
         }*/
 
-        listView = findViewById(R.id.listView_tasks)
+      //////////////
+      /*  listView = findViewById(R.id.listView_tasks)
 
         val listofTasks = mutableListOf<Task>()
 
@@ -47,15 +50,8 @@ class MainActivity : AppCompatActivity() {
 
         var taskController = TaskController(this, taskModel, dtbConnect)
 
-        listView = findViewById<ListView>(R.id.listView_tasks)
-
-
-    }
-
-    fun AddToListView(listView_tasks: ArrayList<Task>){
-        val listOfTasks = listView_tasks
-        val adapter = TaskAdapter(this, listOfTasks)
-        listView.adapter = adapter
+        listView = findViewById<ListView>(R.id.listView_tasks)*/
+//////////////////
 
     }
 
@@ -83,6 +79,21 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
     }
 
+    fun ShowListViewFragment(){
+        val manager = supportFragmentManager
+        val fragmentTransaction = manager.beginTransaction()
+        fragmentTransaction.replace(R.id.myFragment, TaskListFragment())
+        fragmentTransaction.commit()
+
+    }
+
+/*    fun AddToListView(listView_tasks: ArrayList<Task>){
+        val listOfTasks = listView_tasks
+        val adapter = TaskAdapter(this, listOfTasks)
+        listView.adapter = adapter
+
+    }
+
     fun ClearListView(listView_tasks: ArrayList<Task>){
 
         val listofTasks = listView_tasks
@@ -90,16 +101,6 @@ class MainActivity : AppCompatActivity() {
         listView.adapter = adapter
 
         listofTasks.clear()
-        adapter.notifyDataSetChanged();
-    }
-
-   /* fun refresh(idtsk: Int)
-    {
-        val listofTasks = listView_tasks
-        val adapter = TaskAdapter(this, listofTasks)
-        listView.adapter = adapter
-
-        listofTasks.remove(idtsk)
         adapter.notifyDataSetChanged();
     }*/
 

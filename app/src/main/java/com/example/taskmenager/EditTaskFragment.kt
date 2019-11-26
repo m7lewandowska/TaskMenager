@@ -19,12 +19,25 @@ class EditTaskFragment : Fragment() {
     private lateinit var viewModel: EditTaskViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.edit_task_fragment, container, false)
-        Toast.makeText(context, "test1 - edycja", Toast.LENGTH_LONG).show()
+        //Toast.makeText(context, "All Tasks", Toast.LENGTH_LONG).show()
 
+        return inflater.inflate(R.layout.edit_task_fragment, container, false)
     }
 
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        edit_button.setOnClickListener{
+
+
+
+
+            val mainActivity = activity as MainActivity
+            mainActivity.ShowListViewFragment()
+
+        }
+    }
 
    /* override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

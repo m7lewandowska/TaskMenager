@@ -14,6 +14,7 @@ class AddTaskActivity : AppCompatActivity() {
     private var dtbConnect: DTBConnect = DTBConnect(this)
     private var mainActivity: MainActivity= MainActivity()
     private var taskModel: TaskModel = TaskModel()
+    private var tasklistfragment: TaskListFragment = TaskListFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,12 +55,12 @@ class AddTaskActivity : AppCompatActivity() {
         var newtask =Task(taskname, taskpriority, taskstatus, taskdate, taskdescription)
         dtbConnect.addTaskToDTB(newtask)
 
-        mainActivity.ClearListView(taskModel.getTask() as ArrayList<Task>)
+       // tasklistfragment.ClearListView(taskModel.getTask() as ArrayList<Task>)
 
         var tasks = dtbConnect.getTaskFromDTB()
 
         //Dodanie do listView_taskss wszystkich taskow
-        mainActivity.AddToListView(tasks as ArrayList<Task>)
+      //  tasklistfragment.AddToListView(tasks as ArrayList<Task>)
         finish()
 
     }

@@ -102,7 +102,7 @@ class DTBConnect(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nu
 
     fun getTaskFromDTB(): MutableList<Task>
     {
-        val query = "SELECT * FROM $TABLE_NAME"
+        val query = "SELECT * FROM $TABLE_NAME ORDER BY $COL_PRIORITY DESC"
 
         val db = this.writableDatabase
         val cursor = db.rawQuery(query, null,null)
