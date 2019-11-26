@@ -127,4 +127,27 @@ class DTBConnect(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nu
         db.close()
         return taskslist
     }
+
+    fun getTaskById(id: Int): Task
+    {
+        val query = "SELECT * FROM $TABLE_NAME WHERE $COL_ID \"$id\""
+
+        val db = this.writableDatabase
+        val cursor = db.rawQuery(query, null,null)
+        cursor.moveToFirst()
+
+            val task_id = Integer.parseInt(cursor.getString(0))
+            val task_name = (cursor.getString(1))
+            val task_priority = (cursor.getString(2))
+            val task_status = (cursor.getString(3))
+            val task_date = (cursor.getString(4))
+            val task_description = (cursor.getString(5))
+
+            val task = Task(task_name, task_priority, task_status,task_date,task_description)
+
+        cursor.close()
+        db.close()
+        return task
+
+    }
 }

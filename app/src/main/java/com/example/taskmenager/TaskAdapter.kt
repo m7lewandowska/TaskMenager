@@ -2,6 +2,7 @@ package com.example.taskmenager
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,9 +18,9 @@ class TaskAdapter(private val context: Context, private var dataSource: List<Tas
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     private var mainActivity: MainActivity = context as MainActivity
-    private var taskModel: TaskModel = TaskModel()
     private var dtbConnect: DTBConnect = DTBConnect(context)
-    private lateinit var tasklistfragment: TaskListFragment
+    //private var taskModel: TaskModel = TaskModel()
+    //private lateinit var tasklistfragment: TaskListFragment
 
     override fun getCount(): Int {
         return dataSource.size
@@ -54,7 +55,13 @@ class TaskAdapter(private val context: Context, private var dataSource: List<Tas
 
             Toast.makeText(context, "Edit Task", Toast.LENGTH_LONG).show()
             val fragment = EditTaskFragment.newInstance()
+
+            var idtasku =  dtbConnect.getIdFromDTB(task)
+            val bundle = Bundle()
+            bundle.putInt("idtasku",idtasku)
+            fragment.arguments = bundle
             ShowFragment(fragment)
+
 
 
         }
@@ -68,14 +75,7 @@ class TaskAdapter(private val context: Context, private var dataSource: List<Tas
             dataSource = dtbConnect.getTaskFromDTB().toList()
             notifyDataSetChanged()
 
-           // tasklistfragment.ClearListView()
 
-           /* mainActivity.ClearListView(taskModel.getTask() as ArrayList<Task>)
-            var tasks = dtbConnect.getTaskFromDTB()
-//            Toast.makeText(context,"Please fill all data ${tasks}", Toast.LENGTH_SHORT).show()
-
-           //Dodanie do listView_tasks wszystkich taskow
-            mainActivity.AddToListView(tasks as ArrayList<Task>)*/
         }
 
         nameTextView.text = task.taskName.toString()

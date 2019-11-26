@@ -12,6 +12,8 @@ import kotlinx.android.synthetic.main.edit_task_fragment.*
 
 class EditTaskFragment : Fragment() {
 
+    private lateinit var dtbConnect: DTBConnect
+
     companion object {
         fun newInstance() = EditTaskFragment()
     }
@@ -28,9 +30,17 @@ class EditTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        dtbConnect = DTBConnect(context!!)
+
+        val idTask = arguments!!.getInt("idtasku")
+       // Toast.makeText(context," ${idTask}", Toast.LENGTH_SHORT).show()
+
+
+        val singletask = dtbConnect.getTaskById(idTask)
+
         edit_button.setOnClickListener{
 
-
+            val edittask_name = singletask.taskName
 
 
             val mainActivity = activity as MainActivity
